@@ -30,5 +30,10 @@ def get_mentor_nicks():
 
     return render_template('mentor_nicks.html', mentor_nicks=mentor_nicks)
 
+@app.route('/get-info-by-name')
+def get_name_info():
+    info = data_manager.get_info_by_name('Carol')
+    print(info)
+    return render_template('carols_hat.html', info=info)
 if __name__ == '__main__':
     app.run(debug=True)

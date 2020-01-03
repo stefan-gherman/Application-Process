@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <a href="{{ url_for('get_mentors_names') }}">Mentor names</a>
 <br>
 <a href="{{url_for('get_mentor_nicks')}}">Miskolc Mentors Nicknames</a>
+<br>
+<a href="{{url_for('get_name_info')}}">Carol's Info</a>
+<br>
 {% endblock %}

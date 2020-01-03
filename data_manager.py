@@ -34,3 +34,16 @@ def get_mentor_nicknames_city(cursor, city):
     )
     mentor_nicks = cursor.fetchall()
     return mentor_nicks
+
+@database_common.connection_handler
+def get_info_by_name(cursor,name):
+    cursor.execute(
+        sql.SQL("SELECT (({col1}||' ') || {col2}) AS full_name, {col3}  FROM {table} WHERE {col1}=(%s);").format(
+        col1=sql.Identifier('first_name'),
+        col2=sql.Identifier('last_name'),
+        col3=sql.Identifier('phone_number'),
+        table=sql.Identifier('applicants')
+    ),[name]
+    )
+    info = cursor.fetchall()
+    return info

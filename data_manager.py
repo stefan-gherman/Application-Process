@@ -47,3 +47,17 @@ def get_info_by_name(cursor,name):
     )
     info = cursor.fetchall()
     return info
+
+@database_common.connection_handler
+def get_info_mailprovider(cursor,provider):
+    cursor.execute(
+        sql.SQL("SELECT (({col1}||' ') || {col2}) AS full_name, {col3}  FROM {table} WHERE {col4} LIKE %s;").format(
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('last_name'),
+            col3=sql.Identifier('phone_number'),
+            col4=sql.Identifier('email'),
+            table=sql.Identifier('applicants')
+        ), ['%'+provider]
+    )
+    info = cursor.fetchall()
+    return info

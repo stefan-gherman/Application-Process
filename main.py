@@ -24,16 +24,25 @@ def get_mentors_names():
 
     return render_template('mentor_names.html', mentor_names=mentor_names)
 
+
 @app.route('/get-mentors-nicks-city')
 def get_mentor_nicks():
     mentor_nicks = data_manager.get_mentor_nicknames_city('Miskolc')
 
     return render_template('mentor_nicks.html', mentor_nicks=mentor_nicks)
 
+
 @app.route('/get-info-by-name')
 def get_name_info():
     info = data_manager.get_info_by_name('Carol')
     print(info)
     return render_template('carols_hat.html', info=info)
+@app.route('/get-info-mail')
+def get_mail_info():
+    info = data_manager.get_info_mailprovider('@adipiscingenimmi.edu')
+    print(info)
+    return render_template('carols_hat.html', info=info)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

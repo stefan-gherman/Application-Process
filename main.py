@@ -24,6 +24,11 @@ def get_mentors_names():
 
     return render_template('mentor_names.html', mentor_names=mentor_names)
 
+@app.route('/get-mentors-nicks-city')
+def get_mentor_nicks():
+    mentor_nicks = data_manager.get_mentor_nicknames_city('Miskolc')
+
+    return render_template('mentor_nicks.html', mentor_nicks=mentor_nicks)
 
 if __name__ == '__main__':
     app.run(debug=True)

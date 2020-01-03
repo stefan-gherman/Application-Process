@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="mentors">
+{% for mentor_nick in mentor_nicks %}
+{{mentor_nick.nick_name + " " + mentor_nick.city}}<br>
+{% endfor %}
+</div>
+{% include 'footer.html' %}
+{% endblock %}

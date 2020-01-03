@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="mentors">
+
+    {% for data in info %}
+    <p>{{data.full_name}}, <strong>phone number:</strong> {{data.phone_number}}</p>
+    {% endfor %}
+</div>
+{% include "footer.html" %}
+{% endblock %}

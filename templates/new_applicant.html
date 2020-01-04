@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div>
+    {% for applicants in applicant%}
+    {{applicants.first_name + " " + applicants.last_name + " " + applicants.phone_number + " " + applicants.email+ " " + applicants.application_code|string}}
+    {% endfor %}
+</div>
+{% include 'footer.html' %}
+{% endblock %}

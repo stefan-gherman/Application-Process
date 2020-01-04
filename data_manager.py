@@ -35,21 +35,23 @@ def get_mentor_nicknames_city(cursor, city):
     mentor_nicks = cursor.fetchall()
     return mentor_nicks
 
+
 @database_common.connection_handler
-def get_info_by_name(cursor,name):
+def get_info_by_name(cursor, name):
     cursor.execute(
         sql.SQL("SELECT (({col1}||' ') || {col2}) AS full_name, {col3}  FROM {table} WHERE {col1}=(%s);").format(
-        col1=sql.Identifier('first_name'),
-        col2=sql.Identifier('last_name'),
-        col3=sql.Identifier('phone_number'),
-        table=sql.Identifier('applicants')
-    ),[name]
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('last_name'),
+            col3=sql.Identifier('phone_number'),
+            table=sql.Identifier('applicants')
+        ), [name]
     )
     info = cursor.fetchall()
     return info
 
+
 @database_common.connection_handler
-def get_info_mailprovider(cursor,provider):
+def get_info_mailprovider(cursor, provider):
     cursor.execute(
         sql.SQL("SELECT (({col1}||' ') || {col2}) AS full_name, {col3}  FROM {table} WHERE {col4} LIKE %s;").format(
             col1=sql.Identifier('first_name'),
@@ -57,7 +59,32 @@ def get_info_mailprovider(cursor,provider):
             col3=sql.Identifier('phone_number'),
             col4=sql.Identifier('email'),
             table=sql.Identifier('applicants')
-        ), ['%'+provider]
+        ), ['%' + provider]
     )
     info = cursor.fetchall()
     return info
+
+
+@database_common.connection_handler
+def insert_applicant(cursor, first_name, last_name, phone_number, email, application_code):
+    cursor.execute(
+        sql.SQL(
+            "INSERT INTO {table} ({f_n},{l_n},{p_n},{email},{a_c}) VALUES (%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING;").format(
+            f_n=sql.Identifier('first_name'),
+            l_n=sql.Identifier('last_name'),
+            p_n=sql.Identifier('phone_number'),
+            email=sql.Identifier('email'),
+            a_c=sql.Identifier('application_code'),
+            table=sql.Identifier('applicants')
+        ), [first_name, last_name, phone_number, email, application_code]
+    )
+    cursor.execute(
+        sql.SQL("SELECT * FROM {table} WHERE {col1} = (%s);").format(
+            col1=sql.Identifier('application_code'),
+            table=sql.Identifier('applicants')
+        ),[application_code]
+    )
+
+    query_result = cursor.fetchall()
+    return query_result
+@database_common.connection_handler

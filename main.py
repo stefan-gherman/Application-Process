@@ -37,11 +37,21 @@ def get_name_info():
     info = data_manager.get_info_by_name('Carol')
     print(info)
     return render_template('carols_hat.html', info=info)
+
+
 @app.route('/get-info-mail')
 def get_mail_info():
     info = data_manager.get_info_mailprovider('@adipiscingenimmi.edu')
     print(info)
     return render_template('carols_hat.html', info=info)
+
+
+@app.route('/add-applicant')
+def add_applicant():
+    applicant = data_manager.insert_applicant(' Markus', 'Schaffarzyk', '003620 / 725 - 2666',
+                                              'djnovus@groovecoverage.com', 54823)
+    print(applicant)
+    return render_template('new_applicant.html', applicant=applicant)
 
 
 if __name__ == '__main__':

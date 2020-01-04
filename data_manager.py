@@ -82,9 +82,41 @@ def insert_applicant(cursor, first_name, last_name, phone_number, email, applica
         sql.SQL("SELECT * FROM {table} WHERE {col1} = (%s);").format(
             col1=sql.Identifier('application_code'),
             table=sql.Identifier('applicants')
-        ),[application_code]
+        ), [application_code]
+    )
+
+    query_result = cursor.fetchall()
+    return query_result
+
+
+@database_common.connection_handler
+def update_applicant(cursor, first_name, last_name, phone_number):
+    cursor.execute(
+        sql.SQL("UPDATE {table} SET {col1}=%s WHERE {col2} = %s and {col3} = %s;"
+
+                ).format(
+            table=sql.Identifier('applicants'),
+            col1=sql.Identifier('phone_number'),
+            col2=sql.Identifier('first_name'),
+            col3=sql.Identifier('last_name')
+        ), [phone_number, first_name, last_name]
+    )
+
+    cursor.execute(
+        sql.SQL("SELECT * FROM {table} WHERE {col2} = %s AND {col3} = %s").format(
+            table=sql.Identifier('applicants'),
+            col2=sql.Identifier('first_name'),
+            col3=sql.Identifier('last_name')
+        ), [first_name, last_name]
     )
 
     query_result = cursor.fetchall()
     return query_result
 @database_common.connection_handler
+def delete_applicant(cursor,mail):
+    cursor.execute(
+        sql.SQL("DELETE FROM {table} WHERE {col1} LIKE %s;").format(
+        table=sql.Identifier('applicants'),
+        col1=sql.Identifier('email')
+    ),['%'+mail]
+    )

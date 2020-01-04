@@ -54,5 +54,17 @@ def add_applicant():
     return render_template('new_applicant.html', applicant=applicant)
 
 
+@app.route('/update-applicant')
+def update_applicant():
+    applicant = data_manager.update_applicant('Jemima', 'Foreman', '003670/223-7459')
+    return render_template('new_applicant.html', applicant=applicant)
+
+
+@app.route('/delete_applicant')
+def delete_applicant():
+    data_manager.delete_applicant('mauriseu.net')
+    return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)

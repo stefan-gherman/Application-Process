@@ -1,9 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-<div id="mentors">
-{% for mentor_nick in mentor_nicks %}
-{{mentor_nick.nick_name + " " + mentor_nick.city}}<br>
-{% endfor %}
+<div class="title">
+<h1>Miskolc Mentors Nicknames</h1>
 </div>
+<br>
+<br>
+<table align="center">
+    <thead>
+    <th>Nickname</th>
+    <th>City</th>
+    </thead>
+    <tbody>
+{% for mentor_nick in mentor_nicks %}
+<tr>
+    <td>{{mentor_nick.nick_name}}</td>
+    <td>{{mentor_nick.city}}</td>
+</tr>
+{% endfor %}
+    </tbody>
+</table>
 {% include 'footer.html' %}
 {% endblock %}

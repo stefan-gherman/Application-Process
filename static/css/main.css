@@ -1,8 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand|Unica+One&display=swap');
 body {
-    background-color: #008e9d;
+    background-color: #866D4B;
+    color: #002244;
+    margin: 0;
+}
+.title {
+    background-color: #002244;
+    height: 120px;
+    color:#FFCD00;
+    font-size: 60px;
+    font-family: 'Unica One', cursive;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+    width:100%;
+    margin:1px;
+    border-radius: 12px;
+}
+.nf {
+    background-color: #002244;
+    height: 70px;
+    color:#FFCD00;
+    font-size: 60px;
+    font-family: 'Patrick Hand', cursive;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+    width:80%;
+    left: 50%;
+    right: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border-color: #002244;
+    border-radius: 10px;
+}
+.menu {
+    background-color: #002244;
+    height: 80px;
+    color: #FFCD00;
+    font-size: 60px;
+    font-family: 'Patrick Hand', cursive;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+    width:90%;
+    left: 50%;
+    right: 50%;
+    margin: auto;
+    margin-top: 20px;
+    border-color: #002D72;
+    border-radius: 10px;
+    border-width: 10px;
+    border-style: solid;
+}
+.menu .btn {
+    float: left;
+}
+.header {
+    text-align: center;
+}
+.header h1 {
+    color: #FFCD00;
+    font-size: 60px;
+    font-family: 'Patrick Hand', cursive;
+}
+.btn {
+    font-family: Unica One;
+    background-color: #866D4B;
     color: white;
+    font-size: 30px;
+    border-color: gold;
+    border-radius: 10px;
+    margin: 20px 7px;
+
+    transition-duration: 0.4s;
+}
+.btn:hover {
+    background-color: white;
+    color: #866D4B;
+}
+table {
+    border-width: 6px;
+    border-style: solid;
+    border-color: gold;
+    width: 60%;
+    border-collapse: collapse;
+    border-radius: 15px;
+}
+td {
+    font-family:'Unica One', cursive ;
+    font-size: 36px;
+    background-color: white;
+    color: gold;
+    border-width: 3px;
+    border-style: solid;
+    border-color: gold;
+    text-align: center;
+}
+th {
+    font-family:'Patrick Hand', cursive ;
+    font-size: 56px;
+    background-color: white;
+    color: gold;
+    border-width: 3px;
+    border-style: solid;
+    border-color: gold;
+}
+footer{
+    display: table;
+    margin:auto;
+}
+.content-wrapper {
+
 }
 
-.content-wrapper {
-    padding: 10%;
-}
+font-family: 'Patrick Hand', cursive;
+font-family: 'Unica One', cursive;

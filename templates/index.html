@@ -1,19 +1,20 @@
 {% extends "layout.html" %}
-
+{% block title %}
+<div class="title">
+    <p>Application Process</p>
+</div>
+{% endblock %}
 {% block content %}
-
-<a href="{{ url_for('get_mentors_names') }}">Mentor names</a>
-<br>
-<a href="{{url_for('get_mentor_nicks')}}">Miskolc Mentors Nicknames</a>
-<br>
-<a href="{{url_for('get_name_info')}}">Carol's Info</a>
-<br>
-<a href="{{url_for('get_mail_info')}}">No One's Info</a>
-<br>
-<a href="{{url_for('add_applicant')}}">Add applicant</a>
-<br>
-<a href="{{url_for('update_applicant')}}">Update applicant</a>
-<br>
-<a href="{{url_for('delete_applicant')}}">Delete applicants</a>
-<br>
+<div class="header">
+<h1>Menu </h1>
+</div>
+<div class="menu">
+    <a href="{{ url_for('get_mentors_names') }}"><button class="btn">Mentor names</button></a>
+    <a href="{{url_for('get_mentor_nicks')}}"><button class="btn">Miskolc Mentors Nicknames</button></a>
+    <a href="{{url_for('get_name_info')}}"><button class="btn">Carol's Info</button></a>
+    <a href="{{url_for('get_mail_info')}}"><button class="btn">No One's Info</button></a>
+    <a href="{{url_for('add_applicant')}}"><button class="btn">Add applicant</button></a>
+    <a href="{{url_for('update_applicant')}}"><button class="btn">Update applicant</button></a>
+    <a href="{{url_for('delete_applicant')}}"><button class="btn">Delete applicants</button></a>
+</div>
 {% endblock %}

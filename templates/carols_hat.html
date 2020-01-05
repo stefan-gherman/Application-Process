@@ -1,10 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
-<div id="mentors">
-
-    {% for data in info %}
-    <p>{{data.full_name}}, <strong>phone number:</strong> {{data.phone_number}}</p>
-    {% endfor %}
+<div class="title">
+<h1>Applicant Info</h1>
 </div>
+
+    <br>
+    <br>
+<table align="center">
+    <thead>
+    <th>Full Name</th>
+    <th>Phone Number</th>
+    </thead>
+    <tbody>
+    {% for data in info %}
+    <tr>
+        <td>{{data.full_name}}</td>
+        <td><strong>{{data.phone_number}}</strong></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
 {% include "footer.html" %}
 {% endblock %}

@@ -1,9 +1,42 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div>
-    {% for applicants in applicant%}
-    {{applicants.first_name + " " + applicants.last_name + " " + applicants.phone_number + " " + applicants.email+ " " + applicants.application_code|string}}
-    {% endfor %}
+<div class="title">
+    <h1>Applicant Manipulation</h1>
 </div>
+
+<br>
+<br>
+<table align="center">
+    <thead>
+    <th>
+        First Name
+    </th>
+    <th>
+        Last Name
+    </th>
+    <th>
+        Phone Number
+    </th>
+    <th>
+        Email
+    </th>
+    <th>
+        Application Code
+    </th>
+
+    </thead>
+    <tbody>
+    {% for applicants in applicant%}
+    <tr>
+        <td>{{applicants.first_name}}</td>
+        <td>{{applicants.last_name}}</td>
+        <td>{{applicants.phone_number}}</td>
+        <td>{{applicants.email}}</td>
+        <td>{{applicants.application_code|string}}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% include 'footer.html' %}
 {% endblock %}

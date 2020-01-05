@@ -1,11 +1,28 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div id="mentors">
+<div class="title">
+<h1>Mentor Names</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>Mentor First Name</th>
+                <th>Mentor Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
         {% for mentor_name in mentor_names %}
-            {{ mentor_name.first_name + " " + mentor_name.last_name }}<br/>
+        <tr>
+            <td>{{mentor_name.first_name}}</td>
+            <td>{{mentor_name.last_name}}</td>
+            </tr>
         {% endfor%}
-    </div>
+            </tbody>
+        </table>
 
     {% include 'footer.html' %}
 {% endblock %}

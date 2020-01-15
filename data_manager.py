@@ -1,5 +1,7 @@
 import database_common
+
 from psycopg2 import sql
+
 
 
 @database_common.connection_handler
@@ -120,3 +122,4 @@ def delete_applicant(cursor,mail):
         col1=sql.Identifier('email')
     ),['%'+mail]
     )
+

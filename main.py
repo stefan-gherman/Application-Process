@@ -1,6 +1,8 @@
 import data_manager
+
 from flask import Flask, render_template, redirect, url_for
 from psycopg2 import sql
+
 
 app = Flask(__name__)
 
@@ -16,6 +18,7 @@ def mentor_names():
     mentor_names = data_manager.get_mentor_names_by_first_name('László')
 
     return render_template('mentor_names.html', mentor_names=mentor_names)
+
 
 
 @app.route('/get-mentors-names')
@@ -69,6 +72,7 @@ def delete_applicant():
 @app.errorhandler(404)
 def process_404(e):
     return render_template('404.html')
+
 
 
 if __name__ == '__main__':

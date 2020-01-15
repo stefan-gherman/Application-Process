@@ -87,7 +87,9 @@ pyvenv.cfg
 venv/
 ENV/
 
+
 # env file
 enviro_vals.env
 
-# End of https://www.gitignore.io/api/venv,pycharm
+
+

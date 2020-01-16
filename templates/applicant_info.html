@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="title">
+<h1>Applicant Info</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>Applicant First Name</th>
+                <th>Applicant Last Name</th>
+                <th>Applicant Phone Number</th>
+                <th>Applicant Email</th>
+                <th>Applicant Application Code</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for data in applicant_data %}
+        <tr>
+            <td>{{data.first_name}}</td>
+            <td>{{data.last_name}}</td>
+            <td>{{data.phone_number}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.application_code}}</td>
+            </tr>
+        {% endfor%}
+            </tbody>
+        </table>
+
+    {% include 'footer.html' %}
+{% endblock %}

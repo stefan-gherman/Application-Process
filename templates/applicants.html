@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="title">
+<h1>Applicants</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>Applicant First Name</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for applicant in applicants %}
+        <tr>
+            <td><a href="{{url_for('return_info_for_applicant', applicant_id = applicant.id)}}">{{applicant.first_name}}</a></td>
+            </tr>
+        {% endfor%}
+            </tbody>
+        </table>
+
+    {% include 'footer.html' %}
+{% endblock %}

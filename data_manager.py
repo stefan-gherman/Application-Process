@@ -3,7 +3,6 @@ import database_common
 from psycopg2 import sql
 
 
-
 @database_common.connection_handler
 def get_mentor_names_by_first_name(cursor, first_name):
     cursor.execute(
@@ -114,12 +113,39 @@ def update_applicant(cursor, first_name, last_name, phone_number):
 
     query_result = cursor.fetchall()
     return query_result
+
+
 @database_common.connection_handler
-def delete_applicant(cursor,mail):
+def delete_applicant(cursor, mail):
     cursor.execute(
         sql.SQL("DELETE FROM {table} WHERE {col1} LIKE %s;").format(
-        table=sql.Identifier('applicants'),
-        col1=sql.Identifier('email')
-    ),['%'+mail]
+            table=sql.Identifier('applicants'),
+            col1=sql.Identifier('email')
+        ), ['%' + mail]
     )
 
+
+@database_common.connection_handler
+def show_all_applicants(cursor):
+    cursor.execute(
+        sql.SQL("SELECT {col1}, {col2} FROM {table};").format(
+            col1=sql.Identifier('id'),
+            col2=sql.Identifier('first_name'),
+            table=sql.Identifier('applicants')
+        )
+    )
+    all_applicants = cursor.fetchall()
+    return all_applicants
+
+
+@database_common.connection_handler
+def show_data_for_applicant(cursor, applicant_id):
+    cursor.execute(
+        sql.SQL("SELECT * from {table} WHERE {col1} = %s;")
+            .format(
+            table=sql.Identifier('applicants'),
+            col1=sql.Identifier('id')
+        ), [applicant_id]
+    )
+    applicant_data = cursor.fetchall()
+    return applicant_data

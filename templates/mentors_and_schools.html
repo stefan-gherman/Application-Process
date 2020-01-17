@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="title">
+<h1>Mentors and Schools</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>Mentor First Name</th>
+                <th>Mentor Last Name</th>
+                <th>School Name</th>
+                <th>School Country</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for mentor_school in mentor_schools %}
+        <tr>
+            {% for i in mentor_school %}
+            <td>{{mentor_school[i]}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+
+    {% include 'footer.html' %}
+{% endblock %}

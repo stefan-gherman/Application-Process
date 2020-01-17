@@ -114,7 +114,13 @@ footer{
 .content-wrapper {
 
 }
-
+a {
+    text-decoration: none;
+    color: gold;
+}
+a:visited{
+    color:silver;
+}
 font-family: 'Patrick Hand', cursive;
 font-family: 'Unica One', cursive;
 

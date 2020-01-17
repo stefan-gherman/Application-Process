@@ -149,3 +149,28 @@ def show_data_for_applicant(cursor, applicant_id):
     )
     applicant_data = cursor.fetchall()
     return applicant_data
+
+
+@database_common.connection_handler
+def show_mentors_and_schools(cursor):
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, {table1}.{col2}, {table2}.{col3}, {table2}.{col4} FROM {table1} JOIN {table2} ON {table1}.{col5} = {table2}.{col6} ORDER BY {table1}.{col7} ASC;")
+            .format(
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('last_name'),
+            col3=sql.Identifier('name'),
+            col4=sql.Identifier('country'),
+            table1=sql.Identifier('mentors'),
+            table2=sql.Identifier('schools'),
+            col5=sql.Identifier('city'),
+            col6=sql.Identifier('city'),
+            col7=sql.Identifier('id')
+        )
+    )
+
+    mentors_and_schools = cursor.fetchall()
+    return mentors_and_schools
+
+
+# SELECT {col1}, {col2}, {col3}, {col4} FROM {table1} JOIN {table2} on {col5} = {col6} ORDER BY {col7} ASC

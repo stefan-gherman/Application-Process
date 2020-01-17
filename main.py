@@ -82,7 +82,14 @@ def return_all_applicants():
 def return_info_for_applicant(applicant_id):
     applicant_id_for_query = int(applicant_id)
     applicant_data = data_manager.show_data_for_applicant(applicant_id_for_query)
-    return render_template("applicant_info.html", applicant_data = applicant_data)
+    return render_template("applicant_info.html", applicant_data=applicant_data)
+
+
+@app.route('/mentors')
+def return_mentors_and_schools():
+    mentors_and_schools = data_manager.show_mentors_and_schools()
+    return render_template('mentors_and_schools.html', mentor_schools=mentors_and_schools)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

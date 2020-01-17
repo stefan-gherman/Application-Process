@@ -1,0 +1,28 @@
+{% block content %}
+<div class="title">
+<h1>School Contacts</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>School Name</th>
+                <th>Contact First Name</th>
+                <th>Contact Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for contact  in contacts %}
+        <tr>
+            {% for i in contact %}
+            <td>{{contact[i]}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+
+    {% include 'footer.html' %}
+{% endblock %}

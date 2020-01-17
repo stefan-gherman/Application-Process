@@ -214,3 +214,26 @@ def show_mentors_per_country(cursor):
     )
     mentors_per_country = cursor.fetchall()
     return mentors_per_country
+
+
+@database_common.connection_handler
+def show_contacts(cursor):
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, {table2}.{col2}, {table2}.{col3} FROM {table1} LEFT JOIN {table2} ON {table1}.{col4} = {table2}.{col5} ORDER BY {table1}.{col1} ASC;"
+        ).format(
+            table1=sql.Identifier('schools'),
+            col1=sql.Identifier('name'),
+            table2=sql.Identifier('mentors'),
+            col2=sql.Identifier('first_name'),
+            col3=sql.Identifier('last_name'),
+            col4=sql.Identifier('contact_person'),
+            col5=sql.Identifier('id')
+        )
+    )
+    contacts = cursor.fetchall()
+    for contact in contacts:
+        for key in contact.keys():
+            if contact[key] is None:
+                contact[key] = "No Data"
+    return contacts

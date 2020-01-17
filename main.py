@@ -110,6 +110,11 @@ def return_contacts():
     contacts = data_manager.show_contacts()
     return render_template("school_contact.html", contacts=contacts)
 
+@app.route('/applicants_date')
+def return_applicants_date():
+    applicants = data_manager.show_applicants_later_than()
+    print(applicants)
+    return render_template("applicants_date.html", applicants=applicants)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -237,3 +237,24 @@ def show_contacts(cursor):
             if contact[key] is None:
                 contact[key] = "No Data"
     return contacts
+
+
+@database_common.connection_handler
+def show_applicants_later_than(cursor):
+    print("before_query")
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, {table1}.{col2}, {table2}.{col3} FROM {table1} JOIN {table2} ON {table1}.{col4} = {table2}.{col5} WHERE {table2}.{col3} > '2016-01-01' :: DATE ORDER BY {table2}.{col3} DESC;"
+        ).format(
+            table1=sql.Identifier('applicants'),
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('application_code'),
+            table2=sql.Identifier('applicants_mentors'),
+            col3=sql.Identifier('creation_date'),
+            col4=sql.Identifier('id'),
+            col5=sql.Identifier('applicant_id')
+        )
+    )
+    print("after_query")
+    applicants = cursor.fetchall()
+    return applicants

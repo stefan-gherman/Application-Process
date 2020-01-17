@@ -241,7 +241,6 @@ def show_contacts(cursor):
 
 @database_common.connection_handler
 def show_applicants_later_than(cursor):
-    print("before_query")
     cursor.execute(
         sql.SQL(
             "SELECT {table1}.{col1}, {table1}.{col2}, {table2}.{col3} FROM {table1} JOIN {table2} ON {table1}.{col4} = {table2}.{col5} WHERE {table2}.{col3} > '2016-01-01' :: DATE ORDER BY {table2}.{col3} DESC;"
@@ -255,6 +254,31 @@ def show_applicants_later_than(cursor):
             col5=sql.Identifier('applicant_id')
         )
     )
-    print("after_query")
     applicants = cursor.fetchall()
     return applicants
+
+
+@database_common.connection_handler
+def show_applicants_mentors(cursor):
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, {table1}.{col2}, {table2}.{col1} as mntr_frst_nm, {table2}.{col4} FROM {table1} LEFT JOIN {table3} ON {table1}.{col5} = {table3}.{col6} LEFT JOIN {table2} ON {table2}.{col5} = {table3}.{col7} ORDER BY {table1}.{col5};"
+            ).format(
+            table1=sql.Identifier('applicants'),
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('application_code'),
+            table2=sql.Identifier('mentors'),
+            col4=sql.Identifier('last_name'),
+            table3=sql.Identifier('applicants_mentors'),
+            col5=sql.Identifier('id'),
+            col6=sql.Identifier('applicant_id'),
+            col7=sql.Identifier('mentor_id')
+
+        )
+    )
+    applicants_mentors = cursor.fetchall()
+    for applicant in applicants_mentors:
+        for key in applicant.keys():
+            if applicant[key] is None:
+                applicant[key] = "No Data"
+    return applicants_mentors

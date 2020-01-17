@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="title">
+<h1>Applicants Creation Date</h1>
+</div>
+
+    <br>
+    <br>
+        <table align="center">
+            <thead>
+            <tr>
+                <th>Applicant First Name</th>
+                <th>Applicant Application Code</th>
+                <th>Mentor First Name</th>
+                <th>Mentor Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for applicant  in applicants %}
+        <tr>
+            {% for i in applicant %}
+            <td>{{applicant[i]}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+
+    {% include 'footer.html' %}
+{% endblock %}

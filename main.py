@@ -94,14 +94,14 @@ def return_mentors_and_schools():
 @app.route('/all-school')
 def return_school_join():
     mentors_and_schools = data_manager.show_mentors_and_schools_with_null_vals()
-    print(mentors_and_schools)
+
     return render_template('mentors_and_schools.html', mentor_schools=mentors_and_schools)
 
 
 @app.route('/mentors-by-country')
 def mentor_per_country():
     mentors_country = data_manager.show_mentors_per_country()
-    print(mentors_country)
+
     return render_template('mentors_per_country.html', mentors=mentors_country)
 
 
@@ -110,11 +110,16 @@ def return_contacts():
     contacts = data_manager.show_contacts()
     return render_template("school_contact.html", contacts=contacts)
 
+
 @app.route('/applicants_date')
 def return_applicants_date():
     applicants = data_manager.show_applicants_later_than()
-    print(applicants)
     return render_template("applicants_date.html", applicants=applicants)
+
+@app.route('/applicants-and-mentors')
+def return_applicants_and_mentors():
+    applicants = data_manager.show_applicants_mentors()
+    return render_template("applicant_mentors.html", applicants=applicants)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -90,6 +90,17 @@ def return_mentors_and_schools():
     mentors_and_schools = data_manager.show_mentors_and_schools()
     return render_template('mentors_and_schools.html', mentor_schools=mentors_and_schools)
 
+@app.route('/all-school')
+def return_school_join():
+   mentors_and_schools = data_manager.show_mentors_and_schools_with_null_vals()
+   print(mentors_and_schools)
+   return render_template('mentors_and_schools.html', mentor_schools=mentors_and_schools)
+
+@app.route('/mentors-by-country')
+def mentor_per_country():
+    mentors_country = data_manager.show_mentors_per_country()
+    print(mentors_country)
+    return render_template('mentors_per_country.html', mentors = mentors_country)
 
 if __name__ == '__main__':
     app.run(debug=True)

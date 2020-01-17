@@ -173,4 +173,44 @@ def show_mentors_and_schools(cursor):
     return mentors_and_schools
 
 
-# SELECT {col1}, {col2}, {col3}, {col4} FROM {table1} JOIN {table2} on {col5} = {col6} ORDER BY {col7} ASC
+@database_common.connection_handler
+def show_mentors_and_schools_with_null_vals(cursor):
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, {table1}.{col2}, {table2}.{col3}, {table2}.{col4} FROM {table1} RIGHT JOIN {table2} ON {table1}.{col5} = {table2}.{col6} ORDER BY {table1}.{col7} ASC;")
+            .format(
+            col1=sql.Identifier('first_name'),
+            col2=sql.Identifier('last_name'),
+            col3=sql.Identifier('name'),
+            col4=sql.Identifier('country'),
+            table1=sql.Identifier('mentors'),
+            table2=sql.Identifier('schools'),
+            col5=sql.Identifier('city'),
+            col6=sql.Identifier('city'),
+            col7=sql.Identifier('id')
+        )
+    )
+
+    mentors_and_schools = cursor.fetchall()
+    for mentor in mentors_and_schools:
+        for key in mentor.keys():
+            if mentor[key] is None:
+                mentor[key] = "No Data"
+    return mentors_and_schools
+
+
+@database_common.connection_handler
+def show_mentors_per_country(cursor):
+    cursor.execute(
+        sql.SQL(
+            "SELECT {table1}.{col1}, count(*) as number FROM {table1} JOIN {table2} ON {table1}.{col2} = {table2}.{col2} GROUP BY {table1}.{col1};")
+            .format(
+            table1=sql.Identifier('schools'),
+            col1=sql.Identifier('country'),
+            table2=sql.Identifier('mentors'),
+            col2=sql.Identifier('city'),
+
+        )
+    )
+    mentors_per_country = cursor.fetchall()
+    return mentors_per_country
